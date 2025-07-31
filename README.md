@@ -1,12 +1,48 @@
-# React + Vite
+# Shopping Cart React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un'applicazione di carrello della spesa realizzata con **React** e **Vite**.
 
-Currently, two official plugins are available:
+**Obiettivo:** fare pratica nella gestione dello stato globale in React utilizzando lo hook `useReducer`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Funzionalità
 
-## Expanding the ESLint configuration
+- Visualizza una lista di prodotti disponibili
+- Aggiungi prodotti al carrello
+- Modifica la quantità dei prodotti nel carrello
+- Rimuovi prodotti dal carrello
+- Calcolo automatico del totale
+- Interfaccia moderna e responsive
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Struttura del progetto
+
+- `src/App.jsx`: componente principale, gestisce lo stato del carrello
+- `src/components/ProductList.jsx`: mostra la lista dei prodotti
+- `src/components/Cart.jsx`: mostra il carrello e il totale
+- `src/assets/css/index.css`: stili globali dell'app
+
+## Avvio rapido
+
+1. Installa le dipendenze:
+
+   npm install
+
+2. Avvia l'ambiente di sviluppo:
+
+   npm run dev
+
+3. Apri il browser su [http://localhost:5173]
+
+## Personalizzazione
+
+- Puoi modificare i prodotti disponibili nel file `src/App.jsx` (array `products`).
+- Gli stili sono personalizzabili in `src/assets/css/index.css`.
+
+## Stack
+
+- [React](https://react.dev/)
+- [Vite](https://vitejs.dev/)
+- CSS moderno
+
+---
+
+Made with ❤️ by Alessandro Fiora
