@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import ProductList from "./components/productList";
 import Cart from "./components/Cart";
+import "./assets/css/index.css";
 
 const products = [
   { name: "Mela", price: 0.5 },
@@ -12,45 +13,71 @@ const products = [
   { name: "Pasta", price: 0.7 },
 ];
 
+function cartReducer(currentCart, action) {
+  switch (action.type) {
+    case "ADD_ITEM":
+      const found = currentCart.find((p) => p.name === action.payload.name);
+      if (!found) {
+        return [...currentCart, { ...action.payload, quantity: 1 }];
+      } else {
+        return currentCart.map((p) =>
+          p.name === action.payload.name
+            ? { ...p, quantity: p.quantity + 1 }
+            : p
+        );
+      }
+
+    case "REMOVE_ITEM":
+      return currentCart.filter((p) => !(p.name === action.payload.name));
+
+    case "UPDATE_QUANTITY":
+      return currentCart.map((p) =>
+        p.name === action.payload.name
+          ? {
+              ...p,
+              quantity:
+                isNaN(parseInt(action.payload.quantity)) ||
+                parseInt(action.payload.quantity) < 1
+                  ? 1
+                  : parseInt(action.payload.quantity),
+            }
+          : p
+      );
+  }
+}
+
 function App() {
-  const [addedProducts, setAddedProducts] = useState([]);
+  const [cart, dispatchCart] = useReducer(cartReducer, []);
 
   function addToCart(product) {
-    const found = addedProducts.find((p) => p.name === product.name);
-    if (!found) {
-      setAddedProducts([...addedProducts, { ...product, quantity: 1 }]);
-    } else {
-      setAddedProducts(
-        addedProducts.map((p) =>
-          p.name === product.name ? { ...p, quantity: p.quantity + 1 } : p
-        )
-      );
-    }
+    dispatchCart({ type: "ADD_ITEM", payload: product });
   }
 
   function removeFromCart(product) {
-    if (addedProducts.find((p) => p.name === product.name)) {
-      setAddedProducts(addedProducts.filter((p) => !(p.name === product.name)));
-    }
+    dispatchCart({ type: "REMOVE_ITEM", payload: product });
   }
 
   function handleQuantityChange(product, value) {
-    const updatedProducts = addedProducts.map((p) =>
-      p.name === product.name ? { ...p, quantity: parseInt(value) } : p
-    );
-
-    setAddedProducts(updatedProducts);
+    dispatchCart({
+      type: "UPDATE_QUANTITY",
+      payload: { name: product.name, quantity: value },
+    });
   }
 
   return (
-    <>
-      <ProductList products={products} addToCart={addToCart} />
-      <Cart
-        addedProducts={addedProducts}
-        removeFromCart={removeFromCart}
-        handleQuantityChange={handleQuantityChange}
-      />
-    </>
+    <div className="app-background">
+      <div className="app-card">
+        <h1 className="app-title">🛒 Shopping Cart</h1>
+        <ProductList products={products} addToCart={addToCart} />
+        <hr className="app-divider" />
+        <Cart
+          addedProducts={cart}
+          removeFromCart={removeFromCart}
+          handleQuantityChange={handleQuantityChange}
+        />
+      </div>
+      <footer className="app-footer">Made with ❤️ for your shopping</footer>
+    </div>
   );
 }
 
