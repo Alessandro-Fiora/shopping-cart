@@ -1,4 +1,4 @@
-export default function Cart({ addedProducts }) {
+export default function Cart({ addedProducts, removeFromCart }) {
   return (
     <>
       <h2>Carrello:</h2>
@@ -10,9 +10,18 @@ export default function Cart({ addedProducts }) {
               {product.name}, {product.price.toFixed(2)}
               {"€"}, {product.quantity}
               {"pezzi"}
+              <button onClick={() => removeFromCart(product)}>
+                Rimuovi dal carrello
+              </button>
             </li>
           ))}
       </ul>
+      <h2>
+        Totale:{" "}
+        {addedProducts
+          .reduce((acc, curr) => (acc += curr.price * curr.quantity), 0)
+          .toFixed(2)}
+      </h2>
     </>
   );
 }

@@ -28,10 +28,16 @@ function App() {
     }
   }
 
+  function removeFromCart(product) {
+    if (addedProducts.find((p) => p.name === product.name)) {
+      setAddedProducts(addedProducts.filter((p) => !(p.name === product.name)));
+    }
+  }
+
   return (
     <>
       <ProductList products={products} addToCart={addToCart} />
-      <Cart addedProducts={addedProducts} />
+      <Cart addedProducts={addedProducts} removeFromCart={removeFromCart} />
     </>
   );
 }
