@@ -1,0 +1,144 @@
+.app-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  padding: 40px 0;
+  transition: background 0.5s;
+}
+
+.app-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  padding: 32px 40px;
+  max-width: 480px;
+  width: 100%;
+  margin: 24px 0;
+  border: 1px solid #e2e8f0;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+.app-card:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.13);
+  transform: translateY(-2px) scale(1.01);
+}
+
+.app-title {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #2d3748;
+  letter-spacing: 1px;
+  font-size: 2.1rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #4299e1 0%, #805ad5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-divider {
+  margin: 32px 0 24px 0;
+  border: none;
+  border-top: 2px dashed #cbd5e1;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.app-footer {
+  color: #a0aec0;
+  font-size: 0.95em;
+  margin-top: 16px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-bottom: 12px;
+  transition: color 0.3s;
+}
+.app-footer:hover {
+  color: #718096;
+}
+
+.product-list,
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-list-item,
+.cart-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f7fafc;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  font-size: 1.05em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.add-cart-btn,
+.remove-cart-btn {
+  margin-left: 12px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #4299e1;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.add-cart-btn:hover {
+  background: #3182ce;
+}
+
+.remove-cart-btn {
+  background: #e53e3e;
+}
+
+.remove-cart-btn:hover {
+  background: #c53030;
+}
+
+.cart-qty-input {
+  width: 48px;
+  margin: 0 8px;
+  padding: 3px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.cart-title {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.cart-total {
+  margin-top: 18px;
+  font-size: 1.15em;
+  color: #2b6cb0;
+  text-align: right;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .app-card {
+    padding: 18px 6vw;
+    max-width: 98vw;
+  }
+  .app-title {
+    font-size: 1.3rem;
+  }
+}
+
+/* Aggiungi un effetto leggero all'intera pagina */
+body {
+  background: transparent;
+}
