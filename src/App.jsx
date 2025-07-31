@@ -34,10 +34,22 @@ function App() {
     }
   }
 
+  function handleQuantityChange(product, value) {
+    const updatedProducts = addedProducts.map((p) =>
+      p.name === product.name ? { ...p, quantity: parseInt(value) } : p
+    );
+
+    setAddedProducts(updatedProducts);
+  }
+
   return (
     <>
       <ProductList products={products} addToCart={addToCart} />
-      <Cart addedProducts={addedProducts} removeFromCart={removeFromCart} />
+      <Cart
+        addedProducts={addedProducts}
+        removeFromCart={removeFromCart}
+        handleQuantityChange={handleQuantityChange}
+      />
     </>
   );
 }

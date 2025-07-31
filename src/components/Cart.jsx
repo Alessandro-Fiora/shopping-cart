@@ -1,4 +1,8 @@
-export default function Cart({ addedProducts, removeFromCart }) {
+export default function Cart({
+  addedProducts,
+  removeFromCart,
+  handleQuantityChange,
+}) {
   return (
     <>
       <h2>Carrello:</h2>
@@ -8,7 +12,13 @@ export default function Cart({ addedProducts, removeFromCart }) {
             <li key={index}>
               {" "}
               {product.name}, {product.price.toFixed(2)}
-              {"€"}, {product.quantity}
+              {"€"}
+              <input
+                type="number"
+                value={product.quantity}
+                min={1}
+                onChange={(e) => handleQuantityChange(product, e.target.value)}
+              />
               {"pezzi"}
               <button onClick={() => removeFromCart(product)}>
                 Rimuovi dal carrello
@@ -21,6 +31,7 @@ export default function Cart({ addedProducts, removeFromCart }) {
         {addedProducts
           .reduce((acc, curr) => (acc += curr.price * curr.quantity), 0)
           .toFixed(2)}
+        {"€"}
       </h2>
     </>
   );
